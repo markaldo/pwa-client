@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>MK Bakery</title>
+      <link rel="icon" type="image/x-icon" href="/img/icons/favicon.ico">
+      <!-- Materialize CSS from CDN -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/materialize-css@1.0.0/dist/css/materialize.min.css">
+      <!-- Google Fonts -->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!-- Custom CSS -->
+      <link href="/css/styles.css" rel="stylesheet">
+      <!-- Manifest -->
+      <link rel="manifest" href="/manifest.json">
+      <!-- Favicon -->
+      <link rel="icon" type="image/png" href="/img/icons/icon.png">
+      <!-- iOS Support -->
+      <link rel="apple-touch-icon" href="/img/icons/icon-96x96.png">
+      <meta name="apple-mobile-web-app-status-bar" content="#FFE587">
+      <meta name="theme-color" content="#FFE587">
+  </head>
+  <body style="color: #4D2F1F;">
+
+    <!-- top nav -->
+    <nav class="transparent">
+      <div class="container center-align">
+        <span class="left orange-text text-lighten-3">
+          <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
+        </span>
+        <a href="/" class="brand-logo center orange-text text-lighten-3"><span>MK BACKERY</span></a>
+        <span class="right orange-text text-lighten-3 cart-container">
+          <i class="material-icons">shopping_cart</i>
+        </span>
+      </div>
+    </nav>
+
+    <!-- Side nav -->
+  <ul id="side-menu" class="sidenav">
+    <li><a href="#" class="subheader">MK Bakery</a></li>
+    <li><a href="/" class="waves-effect">Home</a></li>
+    <li><a href="/pages/catalog.html" class="waves-effect">Catalog</a></li>
+    <li><a href="/pages/cart.html" class="waves-effect">Favorites</a></li>
+    <li><a href="/pages/about.html" class="waves-effect">About</a></li>
+    <li><a href="/pages/privacy.html" class="waves-effect">Privacy</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="/pages/contact.html" class="waves-effect">
+      <i class="material-icons">mail_outline</i>Contact Us</a>
+    </li>
+    <li><a class="waves-effect" id="exit-app">
+      <i class="material-icons">logout</i>Close</a>
+    </li>
+  </ul>
+
+    <!-- Side form -->
+    <div class="side-form" id="sideForm">
+      <div class="head">
+        <div>
+          <i class="material-icons icon-restaurant">restaurant</i>
+          <span>Custom Pre-order</span>
+        </div>
+        <button class="exit-btn" id="exitBtn" onclick="closeSideForm()">&times;</button>
+      </div>
+      <form class="form-box" id="orderForm" action="#" method="post">
+          <label for="purpose">Select Purpose</label>
+              <select class="option" id="purpose" name="purpose">
+                <option value="volvo">Preorder Cake</option>
+                <option value="saab">Book Catering</option>
+                <option value="fiat" selected>Dinner</option>
+                <option value="audi">Feedback</option>
+              </select>
+        <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+        <input type="tel" id="telephone" name="telephone" placeholder="Telephone" pattern="[0-9]+" required>
+        <input type="email" id="email" name="email" placeholder="Email">
+        <textarea id="message" name="message" placeholder="Short Message"></textarea>
+        <div class="consent">
+          <label>
+            <input type="checkbox" id="consent" name="consent" class="filled-in" required>
+            <span class="policy">I consent to the processing of my personal data in accordance with the privacy policy of the MK Bakery website.</span>
+          </label>
+        </div>
+        <button class="submit" type="submit" id="submitBtn" onclick="submitForm()" disabled>Send</button>
+        <button class="reset" type="reset" id="resetBtn">Reset</button>
+      </form>
+      <div class="confirmation-msg" id="confirmationMsg">Thank you for your order!</div>
+    </div>
+    
+    <div class="line-container center-align">
+      <hr class="nav-line">
+    </div>
+
+    <div class="content">
+      <h3 class="header orange-text text-lighten-3">Discover</h3>
+
+      <div class="card-container">
+        
+      </div>
+
+      <div class="center">
+        <button id="openFormBtn" class="openFormBtn waves-effect waves-light btn" onclick="openSideForm()">
+          <i class="material-icons right">inventory</i>Pre-Order
+        </button>
+      </div>      
+      
+    </div>
+    
+    <div class="bottom-tab-bar">
+      <a href="#" class="tab-item active">
+        <i class="material-icons icon-home">home</i>
+      </a>
+      <a href="/pages/cart.html" class="tab-item icon-heart unactive">
+        <i class="material-icons">favorite</i>
+      </a>
+      <a href="/pages/menu.html" class="tab-item icon-menu unactive">
+        <i class="material-icons">menu_book</i>
+      </a>
+    </div>
+    
+    <!-- Firebase Initialization -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+    <script>
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyBrszdeo4bk6zy1OPSOSRqrR_WInK51Bhs",
+        authDomain: "mk-backery-firestore-c43a8.firebaseapp.com",
+        projectId: "mk-backery-firestore-c43a8",
+        storageBucket: "mk-backery-firestore-c43a8.appspot.com",
+        messagingSenderId: "997727089384",
+        appId: "1:997727089384:web:7879571b2bf6941fc70f5d",
+        measurementId: "G-L2670WP5QH"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/materialize-css@1.0.0/dist/js/materialize.min.js"></script>
+    <!-- Custom Scripts -->
+    <script src="/js/app.js" async></script>
+    <script src="/js/db.js" async></script>
+    <script src="/js/ui.js"></script>
+    <script>
+      // Get the consent checkbox and submit button elements
+      const consentCheckbox = document.getElementById('consent');
+      const submitButton = document.getElementById('submitBtn');
+
+      // Add an event listener to the consent checkbox
+      consentCheckbox.addEventListener('change', function() {
+        // Check if the consent checkbox is checked
+        if (this.checked) {
+          // Enable the submit button
+          submitButton.disabled = false;
+        } else {
+          // Disable the submit button
+          submitButton.disabled = true;
+        }
+      });
+    </script>
+  </body>
+</html>

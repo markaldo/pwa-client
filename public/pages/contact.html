@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MK Bakery</title>
+        <link rel="icon" type="image/x-icon" href="/img/icons/favicon.ico">
+        <!-- Materialize CSS from CDN -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/materialize-css@1.0.0/dist/css/materialize.min.css">
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="/css/styles.css" rel="stylesheet">
+        <!-- Manifest -->
+        <link rel="manifest" href="/manifest.json">
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="/img/icons/icon.png">
+        <!-- iOS Support -->
+        <link rel="apple-touch-icon" href="/img/icons/icon-96x96.png">
+        <meta name="apple-mobile-web-app-status-bar" content="#FFE587">
+        <meta name="theme-color" content="#FFE587">
+    </head>
+    <body style="color: #4D2F1F;">
+
+        <!-- top nav -->
+        <nav class="transparent">
+            <div class="container center-align">
+            <span class="left orange-text text-lighten-3">
+                <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
+            </span>
+            <a href="/" class="brand-logo center orange-text text-lighten-3"><span>MK BAKERY</span></a>
+            <span class="right orange-text text-lighten-3">
+                <i class="material-icons">shopping_cart</i>
+            </span>
+            </div>
+        </nav>
+
+        <!-- side nav -->
+        <ul id="side-menu" class="sidenav">
+            <li><a href="#" class="subheader">MK Bakery</a></li>
+            <li><a href="/" class="waves-effect">Home</a></li>
+            <li><a href="/pages/catalog.html" class="waves-effect">Catalog</a></li>
+            <li><a href="/pages/cart.html" class="waves-effect">Favorites</a></li>
+            <li><a href="/pages/about.html" class="waves-effect">About</a></li>
+            <li><a href="/pages/privacy.html" class="waves-effect">Privacy</a></li>
+            <li><div class="divider"></div></li>
+            <li><a href="/pages/contact.html" class="waves-effect">
+              <i class="material-icons">mail_outline</i>Contact Us</a>
+            </li>
+            <li><a class="waves-effect" id="exit-app">
+              <i class="material-icons">logout</i>Close</a>
+            </li>
+          </ul>
+        
+        <div class="line-container center-align">
+            <hr class="nav-line">
+        </div>
+
+        <div class="content">
+            <h3 class="header orange-text text-lighten-3">Contact Us</h3>
+
+            <div class="contact-us orange-text text-lighten-5">
+                <br>
+                <h6>Contact MK Bakery</h6>
+                <p>Thank you for your interest in Sweet Delights Bakery! Whether you have 
+                    a question, feedback, or just want to say hello, we'd love to hear from you. Here's how 
+                    you can reach us:</p>
+                </br>
+                <h6>Contact Information:</h6>
+                <p><b>Phone:</b> +1 (123) 456-7890<br>
+                    <b>Email:</b> info@sweetdelightsbakery.com<br>
+                    <b>Address:</b> 123 Main Street, Cityville, State, ZIP</p>
+                <br>
+                    <h6>Operation Hours</h6>
+                <p><b>Monday - Friday:</b> 8:00 AM - 6:00 PM<br>
+                    <b>Saturday:</b> 9:00 AM - 5:00 PM<br>
+                    <b>Sunday:</b> Closed
+                </br>
+                <br>
+                <h6>Get in Touch</h6>
+                <p>Need to make an advance 'order'?, Have a question or feedback? Fill out 
+                    the form below, and we'll get back to you as soon as possible.</p>
+                <br>
+                <h6>Meet Our Team</h6>
+                <p>At MK Bakery, we believe in crafting moments of joy 
+                    through our delectable treats and warm hospitality. From our humble beginnings to 
+                    our present-day establishment, our journey has been one filled with passion, dedication,
+                        and a love for baking.</p>
+                </br>
+                <h6>Awards & Certifications</h6>
+                <p>At MK Bakery, we believe in crafting moments of joy 
+                    through our delectable treats and warm hospitality. From our humble beginnings to 
+                    our present-day establishment, our journey has been one filled with passion, dedication,
+                        and a love for baking.</p>
+                <br>
+            </div>
+
+            <div class="form-container">
+                <form id="orderForm" action="#" method="post"></form>
+                    <fieldset class="fieldset-area">
+                        <div class="form-title">
+                            <i class="material-icons icon-restaurant right orange-text text-lighten-3">restaurant</i>
+                            <label>Order/Cartering/Feedback</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="firstName">First Name:<span class="error-message">*</span></label>
+                            <input type="text" id="firstName" name="firstName" placeholder=" .John" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name:<span class="error-message">*</span></label>
+                            <input type="text" id="lastName" name="lastName" placeholder=" .Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telephone">Telephone:<span class="error-message">*</span></label>
+                            <input type="text" id="telephone" name="telephone" pattern="[0-9]+" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" placeholder=" example@gmail.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Short Message:</label>
+                            <textarea id="message" name="message" placeholder=" .Short Message"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" id="consent" name="consent" required>
+                            <label class="consent-label" for="consent">By submitting - I consent to the processing of my personal data in accordance 
+                            with the privacy policy of the MK Bakery website.</label>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" id="submitBtn" disabled>Send</button>
+                            <input type="reset" value="Reset">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    
+        <div class="bottom-tab-bar">
+            <a href="/pages/catalog.html" class="tab-item unactive">
+                <i class="material-icons icon-home">home</i>
+            </a>
+            <a href="/pages/cart.html" class="tab-item icon-heart unactive">
+                <i class="material-icons">favorite</i>
+            </a>
+            <a href="/pages/menu.html" class="tab-item icon-menu unactive">
+                <i class="material-icons">menu_book</i>
+            </a>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/materialize-css@1.0.0/dist/js/materialize.min.js"></script>
+        <!-- Custom Scripts -->
+        <script src="/js/ui.js"></script>
+
+    </body>
+</html>

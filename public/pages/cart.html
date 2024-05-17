@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MK Bakery</title>
+        <link rel="icon" type="image/x-icon" href="/img/icons/favicon.ico">
+        <!-- Materialize CSS from CDN -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/materialize-css@1.0.0/dist/css/materialize.min.css">
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="/css/styles.css" rel="stylesheet">
+        <!-- Manifest -->
+        <link rel="manifest" href="/manifest.json">
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="/img/icons/icon.png">
+        <!-- iOS Support -->
+        <link rel="apple-touch-icon" href="/img/icons/icon-96x96.png">
+        <meta name="apple-mobile-web-app-status-bar" content="#FFE587">
+        <meta name="theme-color" content="#FFE587">
+  </head>
+  <body>
+
+    <!-- top nav -->
+    <nav class="transparent">
+        <div class="container center-align">
+            <span class="left orange-text text-lighten-3">
+                <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
+            </span>
+            <a href="/" class="brand-logo center orange-text text-lighten-3"><span>MK BAKERY</span></a>
+            <span class="right orange-text text-lighten-3">
+                <i class="material-icons">shopping_cart</i>
+            </span>
+        </div>
+    </nav>
+
+    <!-- side nav -->
+    <ul id="side-menu" class="sidenav">
+        <li><a href="#" class="subheader">MK Bakery</a></li>
+        <li><a href="/" class="waves-effect">Home</a></li>
+        <li><a href="/pages/catalog.html" class="waves-effect">Catalog</a></li>
+        <li><a href="/pages/cart.html" class="waves-effect">Favorites</a></li>
+        <li><a href="/pages/about.html" class="waves-effect">About</a></li>
+        <li><a href="/pages/privacy.html" class="waves-effect">Privacy</a></li>
+        <li><div class="divider"></div></li>
+        <li><a href="/pages/contact.html" class="waves-effect">
+            <i class="material-icons">mail_outline</i>Contact Us</a>
+        </li>
+        <li><a class="waves-effect" id="exit-app">
+            <i class="material-icons">logout</i>Close</a>
+        </li>
+    </ul>
+
+    <div class="line-container center-align"><hr class="nav-line"></div>
+
+    <h3 class="header orange-text text-lighten-3">Favourites</h3>
+    
+    <div class="cart-list container"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/materialize-css@1.0.0/dist/js/materialize.min.js"></script>
+    <!-- Custom Scripts -->
+    <script src="/js/ui.js"></script>
+  </body>
+</html>
