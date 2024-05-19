@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Render recipe data
 const renderRecipe = (data, id) => {
-  let imageUrl = (data.url !== null && data.url !== undefined) ? data.url : '/img/icon.png';
+  let imageUrl = (data.url !== null && data.url !== undefined) ? data.url : '/img/bread.png';
   const html = `
     <div class="card" data-id="${id}">
     <span class="favorite-icon" onclick="checkCart('${id}')">&hearts;</span>
@@ -66,9 +66,11 @@ function checkCart(id) {
     const favoriteIcon = document.querySelector(`.card[data-id="${id}"] .favorite-icon`);
     updateHeartIcon(favoriteIcon, null, id);
     if (isAdded) {
-      console.log('Cake added to cart!');
+      showNotification('success', 'Product added to cart.');
+      // console.log('Cake added to cart!');
     } else {
-      console.log('Cake removed from cart!');
+      showNotification('warning', 'Product removed from cart.');
+      // console.log('Cake removed from cart!');
     }
   }
 }
@@ -197,6 +199,124 @@ window.addEventListener('click', function(event) {
 document.getElementById('exit-app').addEventListener('click', function() {
   // Attempt to close the window
   window.close();
+});
+
+// Notifications section
+let existingNotifications = {};
+
+function showNotification(type, message) {
+  // Check if a notification with the same message already exists
+  if (existingNotifications[message]) {
+    // Update the existing notification
+    const notificationElement = existingNotifications[message];
+    notificationElement.classList.remove(...notificationElement.classList);
+    notificationElement.classList.add('toast', type);
+    notificationElement.querySelector('.content').innerHTML = `
+      <strong>${getTitle(type)}</strong></br>
+      ${message}
+    `;
+  } else {
+    // Create a new notification element
+    const notificationElement = document.createElement('div');
+    notificationElement.classList.add('toast', type);
+    notificationElement.innerHTML = `
+      <i class="material-icons" style="color: ${getIconColor(type)};">${getIconName(type)}</i>
+      <div class="content">
+        <strong>${getTitle(type)}</strong></br>
+        ${message}
+      </div>
+      <span class="close">×</span>
+    `;
+
+    // Add the close event listener
+    const closeButton = notificationElement.querySelector('.close');
+    closeButton.addEventListener('click', () => {
+      notificationElement.remove();
+      delete existingNotifications[message];
+      repositionNotifications();
+    });
+
+    // Append the notification to the body
+    document.body.appendChild(notificationElement);
+
+    // Store the notification element in the existingNotifications object
+    existingNotifications[message] = notificationElement;
+
+    // Position the notification
+    repositionNotifications();
+
+    // Remove the notification after 5 seconds
+    setTimeout(() => {
+      notificationElement.remove();
+      delete existingNotifications[message];
+      repositionNotifications();
+    }, 5000);
+  }
+}
+
+// Helper functions to get the icon name, icon color, and title based on the notification type
+function getIconName(type) {
+  switch (type) {
+    case 'success':
+      return 'check_circle';
+    case 'info':
+      return 'info';
+    case 'warning':
+      return 'warning';
+    case 'error':
+      return 'error';
+    default:
+      return '';
+  }
+}
+
+function getIconColor(type) {
+  switch (type) {
+    case 'success':
+      return '#05FF00';
+    case 'info':
+      return '#0085FF';
+    case 'warning':
+      return 'yellow';
+    case 'error':
+      return '#FF4040';
+    default:
+      return '';
+  }
+}
+
+function getTitle(type) {
+  switch (type) {
+    case 'success':
+      return 'Success!';
+    case 'info':
+      return 'Information!';
+    case 'warning':
+      return 'Warning!';
+    case 'error':
+      return 'Error!';
+    default:
+      return '';
+  }
+}
+
+// Function to reposition notifications
+function repositionNotifications() {
+  const notifications = document.querySelectorAll('.toast');
+  notifications.forEach((notification, index) => {
+    notification.style.transform = `translateX(-50%) translateY(${index * 100}%)`;
+  });
+}
+
+// Listen for network status changes
+window.addEventListener('online', () => {
+  // Show an info notification
+  showNotification('info', 'Back online.');
+});
+
+window.addEventListener('offline', () => {
+  // Show a warning notification
+  showNotification('warning', 'You are now offline.');
 });
 
 
